@@ -65,15 +65,15 @@ public class DateOffsetMessageParser extends MessageParser {
             Object fieldValue = getJsonFieldValue(jsonObject);
             if (fieldValue != null && inputPattern != null) {
                 try {
-                	// Get the date
+                    // Get the date
                     Date dateFormat = inputFormatter.parse(fieldValue.toString());
                     result[0] = "dt=" + outputFormatter.format(dateFormat);
                     // Get the offset
-					long offset = message.getOffset();
-					long offsetsPerPartition = mConfig.getOffsetsPerPartition();
-					long partition = (offset / offsetsPerPartition) * offsetsPerPartition;
-					result[0] += "&offset=" + partition;
-						
+                    long offset = message.getOffset();
+                    long offsetsPerPartition = mConfig.getOffsetsPerPartition();
+                    long partition = (offset / offsetsPerPartition) * offsetsPerPartition;
+                    result[0] += "&offset=" + partition;
+                        
                     return result;
                 } catch (Exception e) {
 
